@@ -1,3 +1,33 @@
+{
+  "name": "High Memory Usage Alert - dcc-nonprod",
+  "type": "query alert",
+  "query": "avg:container.memory.usage{kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns,kube_cluster_name:aps-olympus-preprod-us-east-1,kube_deployment:dcc-nonprod} by {pod_name}.rollup(avg,20) > 500000000",
+  "message": "Memory usage is above 500MiB for deployment `dcc-nonprod`. Notify: a796276@fmr.com",
+  "tags": ["env:nonprod", "team:aps", "service:dcc"],
+  "options": {
+    "thresholds": {
+      "critical": 500000000
+    },
+    "evaluation_delay": 0,
+    "new_host_delay": 300,
+    "include_tags": true,
+    "require_full_window": true,
+    "notify_audit": false,
+    "notify_no_data": false,
+    "renotify_interval": 0,
+    "timeout_h": 0
+  }
+}
+
+
+
+
+
+
+
+
+
+
 [{"type":"line","response_format":"timeseries","queries":[{"data_source":"metrics","name":"query1","query":"sum:container.memory.usage{pod_name:dcc-nonprod-84cffd6f4f-8z8sc,kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns,kube_cluster_name:aps-olympus-preprod-us-east-1}.fill(null).rollup(avg, 20)"},{"data_source":"metrics","name":"query2","query":"sum:container.memory.working_set{pod_name:dcc-nonprod-84cffd6f4f-8z8sc,kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns,kube_cluster_name:aps-olympus-preprod-us-east-1}.fill(null).rollup(avg, 20)"}],"formulas":[{"formula":"query1","alias":"Memory used"},{"formula":"query2","alias":"Working set"}]},{"type":"line","response_format":"timeseries","queries":[{"data_source":"metrics","name":"query1","query":"sum:kubernetes.memory.limits{pod_name:dcc-nonprod-84cffd6f4f-8z8sc,kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns,kube_cluster_name:aps-olympus-preprod-us-east-1}.fill(null).rollup(avg, 20)"}],"formulas":[{"formula":"query1","alias":"Memory limits"}],"style":{"palette":"Oranges","type":"dashed","width":"thin"}},{"type":"line","response_format":"timeseries","queries":[{"data_source":"metrics","name":"query1","query":"sum:kubernetes.memory.requests{pod_name:dcc-nonprod-84cffd6f4f-8z8sc,kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns,kube_cluster_name:aps-olympus-preprod-us-east-1}.fill(null).rollup(avg, 20)"}],"formulas":[{"formula":"query1","alias":"Memory requests"}],"style":{"palette":"Greys","type":"dotted","width":"thin"}}]
 
 
