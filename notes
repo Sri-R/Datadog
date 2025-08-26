@@ -7,15 +7,7 @@
   "options": {
     "thresholds": {
       "critical": 500000000
-    },
-    "evaluation_delay": 0,
-    "new_host_delay": 300,
-    "include_tags": true,
-    "require_full_window": true,
-    "notify_audit": false,
-    "notify_no_data": false,
-    "renotify_interval": 0,
-    "timeout_h": 0
+    }
   }
 }
 
