@@ -1,3 +1,35 @@
+sum:kubernetes.memory.usage_pct{kube_namespace:pl203096-pr101521-ap147565-dit,kube_cluster_name:ffio-dev2-us-east-1} by {pod_name,kube_service} * 100
+Evaluation Details
+Evaluate the
+
+average
+Of the query over the
+
+
+Add Custom Schedule
+NEW
+
+3
+Set alert conditions
+Trigger when the evaluated value is
+
+above
+the threshold
+for any pod_name, kube_service
+ 
+Alert threshold:
+>
+
+ 
+Warning threshold:
+>
+
+If data is missing for 10 minutes
+
+Show NO DATA
+
+
+
 {
   "name": "High Memory Usage Alert - dcc-nonprod",
   "type": "query alert",
