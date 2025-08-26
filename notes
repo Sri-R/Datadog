@@ -1,3 +1,10 @@
+[{"type":"line","response_format":"timeseries","queries":[{"data_source":"metrics","name":"query1","query":"sum:container.memory.usage{pod_name:dcc-nonprod-84cffd6f4f-8z8sc,kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns,kube_cluster_name:aps-olympus-preprod-us-east-1}.fill(null).rollup(avg, 20)"},{"data_source":"metrics","name":"query2","query":"sum:container.memory.working_set{pod_name:dcc-nonprod-84cffd6f4f-8z8sc,kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns,kube_cluster_name:aps-olympus-preprod-us-east-1}.fill(null).rollup(avg, 20)"}],"formulas":[{"formula":"query1","alias":"Memory used"},{"formula":"query2","alias":"Working set"}]},{"type":"line","response_format":"timeseries","queries":[{"data_source":"metrics","name":"query1","query":"sum:kubernetes.memory.limits{pod_name:dcc-nonprod-84cffd6f4f-8z8sc,kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns,kube_cluster_name:aps-olympus-preprod-us-east-1}.fill(null).rollup(avg, 20)"}],"formulas":[{"formula":"query1","alias":"Memory limits"}],"style":{"palette":"Oranges","type":"dashed","width":"thin"}},{"type":"line","response_format":"timeseries","queries":[{"data_source":"metrics","name":"query1","query":"sum:kubernetes.memory.requests{pod_name:dcc-nonprod-84cffd6f4f-8z8sc,kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns,kube_cluster_name:aps-olympus-preprod-us-east-1}.fill(null).rollup(avg, 20)"}],"formulas":[{"formula":"query1","alias":"Memory requests"}],"style":{"palette":"Greys","type":"dotted","width":"thin"}}]
+
+
+
+
+
+
 sum:kubernetes.memory.usage_pct{kube_namespace:pl203096-pr101521-ap147565-dit,kube_cluster_name:ffio-dev2-us-east-1} by {pod_name,kube_service} * 100
 Evaluation Details
 Evaluate the
