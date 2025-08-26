@@ -1,13 +1,16 @@
 {
-  "name": "High Memory Usage Alert - dcc-nonprod",
+  "name": "High Memory Usage Alert - dcc-nonprod (% of Limit, 30s)",
   "type": "query alert",
-  "query": "avg(last_5m):container.memory.working_set{kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns} by {pod_name} > 500000000",
-  "message": "Memory usage is above 500MiB for deployment `dcc-nonprod`. Notify: a796276@fmr.com",
+  "query": "avg(last_30s):(container.memory.working_set{kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns} / kubernetes.memory.limits{kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns}) by {pod_name} * 100 > 90",
+  "message": "Memory usage is above 90% of limit for deployment `dcc-nonprod`. Notify: a796276@fmr.com",
   "tags": ["env:nonprod", "team:aps", "service:dcc"],
   "options": {
     "thresholds": {
-      "critical": 500000000
-    }
+      "critical": 90,
+      "warning": 80
+    },
+    "notify_no_data": true,
+    "no_data_timeframe": 2
   }
 }
 
