@@ -1,7 +1,7 @@
 {
   "name": "High Memory Usage Alert - dcc-nonprod",
   "type": "query alert",
-  "query": "avg(last_30s):avg:container.memory.usage_bytes{kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns,kube_deployment:dcc-nonprod} by {kube_pod_name} > 500000000",
+  "query": "avg:container.memory.usage_bytes{kube_namespace:ap163482-deployment-compliance-controller-nonprod-ns,kube_deployment:dcc-nonprod} by {kube_pod_name}.rollup(avg,30) > 500000000",
   "message": "Memory usage is above 500MiB for deployment `dcc-nonprod`. Notify: a796276@fmr.com",
   "tags": ["env:nonprod", "team:aps", "service:dcc"],
   "options": {
@@ -18,6 +18,7 @@
     "timeout_h": 0
   }
 }
+
 
 
 
